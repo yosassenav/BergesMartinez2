@@ -1,6 +1,6 @@
 # TÍTULO DEL PROYECTO
 
-## Integrantes del equipo
+## Integrantes del equipo:
 
 * Berges Portillo Regina del Pilar
 
