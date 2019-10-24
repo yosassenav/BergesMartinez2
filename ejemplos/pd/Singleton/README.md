@@ -6,6 +6,33 @@ acceso a esa única instancia tiene que ser global. En C# la instrucción
 que contiene la palabra “new” sólo se puede ejecutar una vez, así nos 
 aseguramos que sólo existe una instancia.
 
+Claves para crear este patrón:
+
+1. Constructor privado 
+
+2. Campo estático privado con inicialización directa (inline)
+
+3. Propiedad estática pública que devuelve el campo instanciado
+
+De este modo, al iniciarse la aplicación se ejecuta una sola vez la 
+instrucción “new Singleton()” y la instancia queda creada para el resto 
+de vida de la aplicación.
+
+Mediante la propiedad “Instance” se puede acceder a la instancia desde 
+cualquier parte del código.
+
+Por ejemplo de este modo:
+*Singleton.Instance.MetodoDeLaClase()*
+
+Esta implementación es Not Lazy, eso significa que la instancia se crea 
+siempre al iniciar la aplicación, independientemente de que la vayamos a 
+utilizar.
+
+Seria Lazy si la instancia se crease en el momento que la utilizáramos 
+por primera vez. La versión Not Lazy es la más simple, la más utilizada 
+y la más recomendada.
+
+
 **Desventajas:**
 
 * Esconden las dependencias de tu aplicación en tu código, en lugar de 

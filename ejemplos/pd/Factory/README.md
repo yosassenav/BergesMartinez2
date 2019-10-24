@@ -14,6 +14,15 @@ uso, en lugar del funcionamiento interno.
 Este patrón es útil cuando los "switch/else-if" se empiezan repetir en varios lugares de nuestro código porque nos permite 
 encapsular la creación de objetos.
 
+Siendo más específicos, este patrón se debe utilizar cuando:
+
+* El objeto debe extenderse a las subclases.
+
+* Las clases no saben qué subclases exactas tiene que crear.
+
+* La implementación del Producto cambiará con el tiempo y el Cliente no 
+cambiará.
+
 **Ventajas**
 
 * Es muy fácil de implementar.
