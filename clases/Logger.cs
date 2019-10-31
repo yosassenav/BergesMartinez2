@@ -29,7 +29,7 @@ namespace Proyecto
             Console.WriteLine($"[{DateTime.Now}]: {mensaje }");
         }
     }
-    
+
     
 }
 
