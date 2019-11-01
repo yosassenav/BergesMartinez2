@@ -29,13 +29,13 @@ class Program {
       Console.WriteLine("ERROR: NO SE ACEPTAN FECHAS PASADAS A LA ACTUAL NI LA ACTUAL");
     }
     else{
-    DateTime d = DateTime.MinValue + ts;
+    	DateTime d = DateTime.MinValue + ts;
  
-    int dias = d.Day - 1;
-    int meses = d.Month - 1;
-    int años = d.Year - 1;
+    	int dias = d.Day - 1;
+    	int meses = d.Month - 1;
+    	int años = d.Year - 1;
  
-    Console.WriteLine(string.Format("Faltan: {0} años, {1} meses, {2} días", años.ToString(), meses.ToString(), dias.ToString()));
+    	Console.WriteLine(string.Format("Faltan: {0} años, {1} meses, {2} días", años.ToString(), meses.ToString(), dias.ToString()));
     }
     
 
