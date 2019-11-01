@@ -10,7 +10,7 @@ namespace Proyecto
             //Prueba de Logger con Singleton
             var obj1 = Logger.Instanciar();
             var obj2 = Logger.Instanciar();
-            logger.Log("Creación de recordatorio");
+            obj1.Log("Creación de recordatorio");
 
             Recordatorio rec = new Recordatorio();
             rec.Tipo = "Tarea";
