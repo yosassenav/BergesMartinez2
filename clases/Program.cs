@@ -1,12 +1,4 @@
-﻿using System.IO;
-using System.Text;
-using System;
-using Proyecto;
-using MySql.Data.MySqlClient;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
+﻿using System;
 
 namespace Proyecto
 {
@@ -14,51 +6,41 @@ namespace Proyecto
     {
         static void Main(string[] args)
         {
-            
+
             //Prueba de Logger con Singleton
-            //var obj1 = Logger.GetMyInstance();
-            //var obj2 = Logger.GetMyInstance();
-            //TextWriter texto = null;
-            //obj1.Log("Creación de recordatorio", texto);
+            var logger = LoggerSingleton.Instanciar();
 
+            //Conexión a BD
+            ConexionSingleton db = ConexionSingleton.InstanciarCon();
+            db.Conectar();
 
-            Logger logger = Logger.GetMyInstance();
-            logger.LogInfo("LOG INFORMATION");
-            logger.LogWarn("LOG WARNING");
-            logger.LogError("LOG ERROR");
+            logger.EstablecerNivel(3);
+            logger.Guardar("Se ha establecido conexión a la base de datos.");
 
+            logger.EstablecerNivel(3);
+            logger.Guardar("Creación de recordatorio.");
 
+            Recordatorio r = new Recordatorio();
+            r.Tipo = "Tarea";
+            r.Titulo = "Investigación";
+            r.Materia = "Problemas del Mundo Contemporáneo";
+            r.Descripcion = "Realizar investigación sobre movimientos sociales de los años '60";
+            r.Estado = "Pendiente";
+            r.Prioridad = 2;
+            r.Fecha = Convert.ToDateTime("2019-01-10");
+            r.Hora = "7:00";
+            //Console.WriteLine(r.ToString());
 
-            DataBase db = DataBase.GetMyInstance();
-            db.DBOpenConnection();
+            //Guardar recordatorio en BD
+            db.RealizarConsulta($"INSERT INTO recordatorios (Tipo, Titulo, Materia, Descripcion, Estado, Prioridad, Fecha, Hora) VALUES ('{r.ToString()}')");
+            logger.EstablecerNivel(3);
+            logger.Guardar("Se ha realizado consulta de inserción a la BD.");
 
-            TxtManager manager = TxtManager.GetMyInstance();
-            var lines = manager.ReadFromFile();
-
-            foreach (var line in lines)
-            {
-                db.DBInsert(line);
-            }
-
-            db.DBExecReadCommand("SELECT * FROM log");
-            db.DBCloseConnection();
-
-            Console.ReadKey();
-
-
-            /*Recordatorio rec = new Recordatorio();
-            rec.Tipo = "Tarea";
-            rec.Titulo = "Investigación";
-            rec.Materia = "Problemas del Mundo Contemporáneo";
-            rec.Descripcion = "Realizar investigación sobre movimientos sociales de los años '60";
-            rec.Estado = "Pendiente";
-            rec.Prioridad = 2;
-            //rec.Fecha = "21/10/2019";
-            rec.Fecha = Convert.ToDateTime("2019-01-10");
-            rec.Hora = "7:00";
-
-
-            Console.WriteLine(rec.ToString());*/
+            //Desconexión de BD
+            db.Desconectar();
+            logger.EstablecerNivel(2);
+            logger.Guardar("Se ha realizado desconectado de la BD.");
         }
     }
 }
+

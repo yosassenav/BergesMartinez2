@@ -67,10 +67,8 @@ namespace Proyecto{
                                 default: Console.WriteLine("Valor de Prioridad no permitido");
                                         break;           
                         }    
-                        string s = Materia +"\n" + Tipo +"\n" + "Para el día: " + Fecha.ToString("d/M/yyyy")  + " a 
-las " + Hora +"\n"+ "Título: " + Titulo + "\n" + "Prioridad: " + prioridad + "\n"+"Descripcion: " + Descripcion + 
-"\n" +"Estado: " + Estado;
-                
+                        //string s = Materia +"\n" + Tipo +"\n" + "Para el día: " + Fecha.ToString("d/M/yyyy")  + " a  las " + Hora +"\n"+ "Título: " + Titulo + "\n" + "Prioridad: " + prioridad + "\n"+"Descripcion: " + Descripcion + "\n" +"Estado: " + Estado;
+                        string s = Tipo+","+Titulo+","+Materia+","+Descripcion+","+Estado+","+prioridad+","+Fecha+","+Hora;
                         return s;
 
                 }
