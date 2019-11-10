@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace Proyecto
 {
@@ -8,23 +8,38 @@ namespace Proyecto
         {
 
             //Prueba de Logger con Singleton
-            var obj1 = Logger.Instanciar();
-            var obj2 = Logger.Instanciar();
-            obj1.Log("Creación de recordatorio");
+            var logger = LoggerSingleton.Instanciar();
 
-            Recordatorio rec = new Recordatorio();
-            rec.Tipo = "Tarea";
-            rec.Titulo = "Investigación";
-            rec.Materia = "Problemas del Mundo Contemporáneo";
-            rec.Descripcion = "Realizar investigación sobre movimientos sociales de los años '60";
-            rec.Estado = "Pendiente";
-            rec.Prioridad = 2;
-            //rec.Fecha = "21/10/2019";
-            rec.Fecha = Convert.ToDateTime("2019-01-10");
-            rec.Hora = "7:00";
+            //Conexión a BD
+            ConexionSingleton db = ConexionSingleton.InstanciarCon();
+            db.Conectar();
 
-            
-            Console.WriteLine(rec.ToString());
+            logger.EstablecerNivel(3);
+            logger.Guardar("Se ha establecido conexión a la base de datos.");
+
+            logger.EstablecerNivel(3);
+            logger.Guardar("Creación de recordatorio.");
+
+            Recordatorio r = new Recordatorio();
+            r.Tipo = "Tarea";
+            r.Titulo = "Investigación";
+            r.Materia = "Problemas del Mundo Contemporáneo";
+            r.Descripcion = "Realizar investigación sobre movimientos sociales de los años '60";
+            r.Estado = "Pendiente";
+            r.Prioridad = 2;
+            r.Fecha = Convert.ToDateTime("2019-01-10");
+            r.Hora = "7:00";
+            //Console.WriteLine(r.ToString());
+
+            //Guardar recordatorio en BD
+            db.RealizarConsulta($"INSERT INTO recordatorios (Tipo, Titulo, Materia, Descripcion, Estado, Prioridad, Fecha, Hora) VALUES ('{r.ToString()}')");
+            logger.EstablecerNivel(3);
+            logger.Guardar("Se ha realizado consulta de inserción a la BD.");
+
+            //Desconexión de BD
+            db.Desconectar();
+            logger.EstablecerNivel(2);
+            logger.Guardar("Se ha realizado desconectado de la BD.");
         }
     }
 }
