@@ -24,7 +24,7 @@ namespace Proyecto
             r.Tipo = "Tarea";
             r.Titulo = "Investigación";
             r.Materia = "Problemas del Mundo Contemporáneo";
-            r.Descripcion = "Realizar investigación sobre movimientos sociales de los años '60";
+            r.Descripcion = "Realizar investigación sobre movimientos sociales de los años 60";
             r.Estado = "Pendiente";
             r.Prioridad = 2;
             r.Fecha = Convert.ToDateTime("2019-01-10");
