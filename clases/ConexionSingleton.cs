@@ -13,7 +13,7 @@ namespace Proyecto
         private static MySqlConnection connection;
 
         private ConexionSingleton(){
-            connection = new MySqlConnection("Server=localhost; Database=test;Port=3306;User Id=root;Password=''");
+            connection = new MySqlConnection("Server=localhost; Database=test;Port=3306;User Id=root;Password='root'");
         }
 
          //Para crear una única instancia
@@ -37,7 +37,18 @@ namespace Proyecto
             MySqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read()){
-                Console.WriteLine(reader["description"]);
+                string s = string.Empty; 
+                
+                for (int i = 0; i < reader.FieldCount; i++){
+                    s += $"{reader[i].ToString()}"; //se concatena el contenido de cada campo
+                    
+                    if (i != reader.FieldCount - 1)
+                    {
+                        s += " | ";
+                    }
+                }
+                //Se imprime cada línea de la tabla
+                Console.WriteLine(s);
             }
             command.Dispose();
         }

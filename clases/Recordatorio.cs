@@ -43,8 +43,8 @@ namespace Proyecto{
                                 else{Console.WriteLine("Valor de Prioridad no permitido.");}             
                            }
                 }
-                public DateTime Fecha;
-                public DateTime  GetSetFecha{
+                public string Fecha;
+                public string  GetSetFecha{
                         get { return Fecha; }
                         set { Fecha  = value; }
                 }
@@ -68,7 +68,11 @@ namespace Proyecto{
                                         break;           
                         }    
                         //string s = Materia +"\n" + Tipo +"\n" + "Para el día: " + Fecha.ToString("d/M/yyyy")  + " a  las " + Hora +"\n"+ "Título: " + Titulo + "\n" + "Prioridad: " + prioridad + "\n"+"Descripcion: " + Descripcion + "\n" +"Estado: " + Estado;
+<<<<<<< HEAD
                         string s = $'''{Tipo}','{Titulo}','{Materia}','{Descripcion}','{Estado}','{prioridad}','{Fecha}','{Hora}''';
+=======
+                        string s = Tipo+"'"+","+"'"+Titulo+"'"+","+"'"+Materia+"'"+","+"'"+Descripcion+"'"+","+"'"+Estado+"'"+","+"'"+prioridad+"'"+","+"'"+Fecha+"'" +","+"'"+Hora;
+>>>>>>> 3b1bfb709a475a2f6d0e51d27168be2ef92a22dd
                         return s;
 
                 }
